@@ -44,8 +44,7 @@ public class BancoResource {
 
     @Context
     private UriInfo context;
-    
-    
+     
 
     /**
      * Creates a new instance of BancoResource
@@ -53,12 +52,10 @@ public class BancoResource {
     public BancoResource() {
     }
 
-    
  
     @PUT
     @Path("/trx")//funciona
-    public Response transferir(@HeaderParam("Content-type") String contentType,String content, 
-            @QueryParam("monto") int monto, @QueryParam("origen") String origen ,@QueryParam("destino") String destino) {
+    public Response transferir(@HeaderParam("Content-type") String contentType,String content, @QueryParam("monto") int monto, @QueryParam("origen") String origen ,@QueryParam("destino") String destino) {
     //@PUT
     //@Path("/trx")
     //public Response transferir(CreateTransaction createTransaction) {   
@@ -144,9 +141,7 @@ public class BancoResource {
     
     @POST
     @Path("/cartola/")// funciona
-    public Response obtenerCartola(@HeaderParam("Content-type") String contentType, String content,
-     @QueryParam("fechaInicio") float fechaInicio, @QueryParam("fechaFin") float fechaFin, 
-     @QueryParam("id") String id, @QueryParam("limit") int limit) {
+    public Response obtenerCartola(@HeaderParam("Content-type") String contentType, String content, @QueryParam("fechaInicio") float fechaInicio, @QueryParam("fechaFin") float fechaFin, @QueryParam("id") String id, @QueryParam("limit") int limit) {
         
         
         try { 
@@ -240,35 +235,5 @@ public class BancoResource {
         }
 
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    /**
-     * Retrieves representation of an instance of appserver.grupo5.BancoResource
-     * @return an instance of java.lang.String
-     */
-    @GET
-    @Produces("application/json")
-    public String getJson() {
-        //TODO return proper representation object
-        throw new UnsupportedOperationException();
-    }
 
-    /**
-     * PUT method for updating or creating an instance of BancoResource
-     * @param content representation for the resource
-     * @return an HTTP response with content of the updated or created resource.
-     */
-    @PUT
-    @Consumes("application/json")
-    public void putJson(String content) {
-    }
 }

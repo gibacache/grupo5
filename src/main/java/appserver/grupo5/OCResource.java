@@ -32,7 +32,8 @@ public class OCResource {
     public OCResource() {
     }
 
-    private String url = "http://chiri.ing.puc.cl/atenea"; // en produccion es  http://localhost:83
+    //private String url = "http://chiri.ing.puc.cl/atenea"; // en produccion es  http://localhost:83
+    private String url = "http://localhost:83";
     
     @GET
     @Path("/")

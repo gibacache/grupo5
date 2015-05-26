@@ -28,8 +28,8 @@ public class FacturasResource {
     @Context
     private UriInfo context;
 
-    private String url = "http://chiri.ing.puc.cl/zeuz"; // en produccion es  http://localhost:83
-    
+    //private String url = "http://chiri.ing.puc.cl/zeuz"; // en produccion es  http://localhost:83
+    private String url = "http://localhost:83";
     /**
      * Creates a new instance of FacturasResource
      */
