@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://chiri.ing.puc.cl:8080/Banco/Trx?wsdl" uri="wsdl/chiri.ing.puc.cl_8080/Banco/Trx.wsdl"/>
+    <system systemId="http://chiri.ing.puc.cl:8080/Banco/Cuenta?wsdl" uri="wsdl/chiri.ing.puc.cl_8080/Banco/Cuenta.wsdl"/>
+</catalog>

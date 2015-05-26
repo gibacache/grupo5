@@ -29,6 +29,7 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(appserver.grupo5.BancoResource.class);
         resources.add(appserver.grupo5.FacturasResource.class);
         resources.add(appserver.grupo5.OCResource.class);
     }

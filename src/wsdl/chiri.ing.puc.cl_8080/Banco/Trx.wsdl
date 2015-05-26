@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions name="Trx" targetNamespace="http://servicios.banco.integracion.uc.cl/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://servicios.banco.integracion.uc.cl/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://servicios.banco.integracion.uc.cl/" xmlns:tns="http://servicios.banco.integracion.uc.cl/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="crearTransaccion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="origen" type="xs:string"/>
+      <xs:element minOccurs="0" name="destino" type="xs:string"/>
+      <xs:element name="monto" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="transaccion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="created_at" type="xs:string"/>
+      <xs:element minOccurs="0" name="destino" type="xs:string"/>
+      <xs:element minOccurs="0" name="id" type="xs:string"/>
+      <xs:element name="monto" type="xs:int"/>
+      <xs:element minOccurs="0" name="origen" type="xs:string"/>
+      <xs:element minOccurs="0" name="updated_at" type="xs:string"/>
+      <xs:element minOccurs="0" name="v" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="badParameterItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="msg" type="xs:string"/>
+      <xs:element minOccurs="0" name="param" type="xs:string"/>
+      <xs:element minOccurs="0" name="value" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType final="#all" name="transaccionArray">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="item" nillable="true" type="tns:transaccion"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BadParameters" type="tns:BadParameters"/>
+  <xs:complexType name="BadParameters">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="items" type="tns:badParameterItem"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Error" type="tns:Error"/>
+  <xs:complexType name="Error">
+    <xs:sequence>
+      <xs:element name="httpCode" nillable="true" type="xs:int"/>
+      <xs:element name="eRROR_CODE" nillable="true" type="xs:int"/>
+      <xs:element name="description" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="BadParametersException">
+    <wsdl:part element="tns:BadParameters" name="BadParametersException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTransaccion">
+    <wsdl:part name="id" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="crearTransaccion">
+    <wsdl:part name="trx" type="tns:crearTransaccion">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTransaccionResponse">
+    <wsdl:part name="return" type="tns:transaccionArray">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="crearTransaccionResponse">
+    <wsdl:part name="return" type="tns:transaccion">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ErrorException">
+    <wsdl:part element="tns:Error" name="ErrorException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="Trx">
+    <wsdl:operation name="crearTransaccion">
+      <wsdl:input message="tns:crearTransaccion" name="crearTransaccion">
+    </wsdl:input>
+      <wsdl:output message="tns:crearTransaccionResponse" name="crearTransaccionResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:BadParametersException" name="BadParametersException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:ErrorException" name="ErrorException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getTransaccion">
+      <wsdl:input message="tns:getTransaccion" name="getTransaccion">
+    </wsdl:input>
+      <wsdl:output message="tns:getTransaccionResponse" name="getTransaccionResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:BadParametersException" name="BadParametersException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:ErrorException" name="ErrorException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TrxSoapBinding" type="tns:Trx">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="crearTransaccion">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="crearTransaccion">
+        <soap:body namespace="http://servicios.banco.integracion.uc.cl/" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="crearTransaccionResponse">
+        <soap:body namespace="http://servicios.banco.integracion.uc.cl/" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="BadParametersException">
+        <soap:fault name="BadParametersException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="ErrorException">
+        <soap:fault name="ErrorException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getTransaccion">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="getTransaccion">
+        <soap:body namespace="http://servicios.banco.integracion.uc.cl/" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getTransaccionResponse">
+        <soap:body namespace="http://servicios.banco.integracion.uc.cl/" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="BadParametersException">
+        <soap:fault name="BadParametersException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="ErrorException">
+        <soap:fault name="ErrorException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Trx">
+    <wsdl:port binding="tns:TrxSoapBinding" name="TrxPort">
+      <soap:address location="http://chiri.ing.puc.cl:8080/Banco/Trx"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
