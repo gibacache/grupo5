@@ -29,7 +29,7 @@ public class FacturasResource {
     private UriInfo context;
 
     //private String url = "http://chiri.ing.puc.cl/zeuz"; // en produccion es  http://localhost:83
-    private String url = "http://localhost:83";
+    private String url = "http://localhost:85";
     /**
      * Creates a new instance of FacturasResource
      */
@@ -144,7 +144,7 @@ public class FacturasResource {
     }
     
     @POST
-    @Path("/cancel") //mandar id de la factura y el motivo de la anulación en el json (content). solamente se pueden rechazar facturas en estado pendiente
+    @Path("/cancel") //mandar id de la factura y el motivo de la anulaciÃ³n en el json (content). solamente se pueden rechazar facturas en estado pendiente
     public Response anularFactura(@HeaderParam("Content-type") String contentType, String content) {
         return http.POST(url + "/cancel/", content, contentType);
         
