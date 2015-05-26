@@ -31,6 +31,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import org.json.JSONObject;
+
 
  
 
@@ -55,7 +57,8 @@ public class BancoResource {
  
     @PUT
     @Path("/trx")//funciona
-    public Response transferir(@HeaderParam("Content-type") String contentType,String content, @QueryParam("monto") int monto, @QueryParam("origen") String origen ,@QueryParam("destino") String destino) {
+    @Consumes("application/json")
+    public Response transferir(@HeaderParam("Content-type") String contentType,JSONObject inputJsonObj, @QueryParam("monto") int monto, @QueryParam("origen") String origen ,@QueryParam("destino") String destino) {
     //@PUT
     //@Path("/trx")
     //public Response transferir(CreateTransaction createTransaction) {   
